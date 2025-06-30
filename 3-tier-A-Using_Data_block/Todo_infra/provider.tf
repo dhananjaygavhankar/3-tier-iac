@@ -6,18 +6,18 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name  = "_______" # add details
-    storage_account_name = "_______" # add details
-    container_name       = "_______" # add details
-    key                  = "_______" # add details
-    subscription_id      = "_______" # add details
+    resource_group_name  = "-"
+    storage_account_name = "-"
+    container_name       = "-"
+    key                  = "-"
+    subscription_id      = "-"
 
   }
 }
 provider "azurerm" {
   features {}
-  subscription_id = "_______" # add details
-  tenant_id       = "_______" # add details
-  client_id       = "_______" # add details
-  client_secret   = "_______" # add details
+  subscription_id = "-"
+  tenant_id       = "-"
+  client_id       = "-"
+  client_secret   = "-"
 }

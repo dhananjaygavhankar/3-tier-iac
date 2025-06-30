@@ -76,34 +76,47 @@ module "public_ip_backend" {
 }
 
 module "virtual_machine_frontend" {
-  depends_on          = [module.Virtual_machine_Frontend-Nic, module.public_ip_frontend, module.subnet_frontend, module.vnet]
+  depends_on          = [module.azurerm_key_vault_secret, module.key_vault, module.public_ip_frontend, module.subnet_frontend, module.vnet]
   source              = "../Module/azurerm_virtual_machin/VM"
   vm                  = "Frontend-VM"
   resource_group_name = var.resource_group_name
   location            = var.location
   nic_name            = "Frontend-Nic"
   disks               = "frontend-disk"
+  username            = var.username
+  password            = var.password
+  key_vault           = var.key_vault
 }
 
+
+
 module "virtual_machine_backend" {
-  depends_on          = [module.vnet, module.Virtual_machine_Backend-Nic, module.public_ip_backend, module.subnet_backend]
+  depends_on          = [module.azurerm_key_vault_secret, module.key_vault, module.vnet, module.Virtual_machine_Backend-Nic, module.public_ip_backend, module.subnet_backend]
   source              = "../Module/azurerm_virtual_machin/VM"
   vm                  = "Backend-VM"
   resource_group_name = var.resource_group_name
   location            = var.location
   nic_name            = "Backend-Nic"
   disks               = "backend-disk"
+  username            = var.username
+  password            = var.password
+  key_vault           = var.key_vault
 }
 
+
+
 module "sql_server" {
-  depends_on          = [module.virtual_machine_backend]
+  depends_on          = [module.azurerm_key_vault_secret, module.virtual_machine_backend]
   source              = "../Module/azurerm_sql_server"
   server_name         = "sqlserverbackend7796229222"
   resource_group_name = var.resource_group_name
   location            = var.location
-  sql_admin_username  = "dhananjaytodo"
-  sql_admin_password  = "dhananjay-7796229222"
-  todo_db             = "todoappdb"
+  # sql_admin_username  = var.username
+  # sql_admin_password  = var.password
+  todo_db   = "todoappdb"
+  key_vault = var.key_vault
+  username  = var.username
+  password  = var.password
 }
 
 module "nsg" {
@@ -116,7 +129,20 @@ module "nsg" {
 
 module "key_vault" {
   depends_on          = [module.rg]
-  source              = "../Module/Key_vault"
+  source              = "../Module/Key_vault/key_vault_creation"
   resource_group_name = var.resource_group_name
   location            = var.location
+  key_vault           = var.key_vault
+}
+
+module "azurerm_key_vault_secret" {
+  depends_on          = [module.rg, module.key_vault]
+  source              = "../Module/Key_vault/secretes"
+  resource_group_name = var.resource_group_name
+  # location            = var.location
+  username       = var.username
+  username_value = var.username_value
+  password       = var.password
+  password_value = var.password_value
+  key_vault      = var.key_vault
 }

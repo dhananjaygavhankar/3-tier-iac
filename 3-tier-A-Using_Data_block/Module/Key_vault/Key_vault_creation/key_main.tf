@@ -1,5 +1,5 @@
-resource "azurerm_key_vault" "example" {
-  name                        = "todoapp-keyvault"
+resource "azurerm_key_vault" "key_vault" {
+  name                        = var.key_vault
   location                    = var.location
   resource_group_name         = var.resource_group_name
   enabled_for_disk_encryption = true
@@ -15,14 +15,22 @@ resource "azurerm_key_vault" "example" {
 
     key_permissions = [
       "Get",
+      "List",
+      "Create"
     ]
 
     secret_permissions = [
       "Get",
+      "Set",
+      "Delete",
+      "List"
     ]
 
     storage_permissions = [
       "Get",
+      "Set",
+      "Delete",
+      "List"
     ]
   }
 }
