@@ -2,17 +2,17 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 4.29.0"
+      version = "~> 4.30.0"
     }
   }
-  # backend "azurerm" {
-  #   resource_group_name  = "-"
-  #   storage_account_name = "-"
-  #   container_name       = "-"
-  #   key                  = "-"
-  #   subscription_id      = "-"
+  backend "azurerm" {
+    resource_group_name  = "DoNotDeleteRg"
+    storage_account_name = "121donotdeletestorage121"
+    container_name       = "terraform.tfstate"
+    key                  = "tfstate"
+    subscription_id      = "5c83ee41-460c-400b-8120-13a218b61103"
 
-  # }
+  }
 }
 provider "azurerm" {
   features {}
