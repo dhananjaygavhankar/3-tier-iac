@@ -10,12 +10,12 @@ data "azurerm_key_vault" "key_vault" {
  
 data "azurerm_key_vault_secret" "username" {
   # name         = var.username
-  name         = "T0d0l0gin"
+  name         = "T0d000l0gin"
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 data "azurerm_key_vault_secret" "password" {
   # name         = var.password
-  name         = "T0d0passw0rd"
+  name         = "T0d000passw0rd"
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
