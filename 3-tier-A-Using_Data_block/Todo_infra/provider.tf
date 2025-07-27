@@ -8,8 +8,8 @@ terraform {
   backend "azurerm" {
     resource_group_name  = "DoNotDeleteRg"
     storage_account_name = "121donotdeletestorage121"
-    container_name       = "terraform.tfstate"
-    key                  = "tfstate"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
     subscription_id      = "5c83ee41-460c-400b-8120-13a218b61103"
 
   }
