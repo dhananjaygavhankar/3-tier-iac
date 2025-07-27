@@ -1,5 +1,5 @@
 module "rg" {
-  source              = "../module/Resource_group"
+  source              = "../Module/Resource_group"
   resource_group_name = var.resource_group_name
   location            = var.location
 }
@@ -25,7 +25,7 @@ module "subnet_frontend" {
 }
 
 module "subnet_backend" {
-  depends_on              = [module.vnet, module.vnet, module.rg]
+  depends_on              = [module.vnet, module.rg]
   source                  = "../Module/azurerm_Virtual_Network/subnet"
   resource_group_name     = var.resource_group_name
   vnet_name               = var.vnet_name
