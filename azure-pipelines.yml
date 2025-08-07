@@ -1,0 +1,40 @@
+trigger:
+ branches:
+  exclude:
+    - new
+  include:
+    - main
+
+pool:
+ Practice
+
+
+stages:
+  - stage: 
+    jobs:
+      - job: 
+        steps:
+        - task: TerraformInstaller@1
+          inputs:
+            terraformVersion: 'latest'
+        - task: TerraformTask@5
+          inputs:
+            provider: 'azurerm'
+            command: 'init'
+            backendServiceArm: 'pipeline-creation'
+            backendAzureRmOverrideSubscriptionID: '3a45f28c-3b05-4d1b-b640-21585be45e39'
+            backendAzureRmResourceGroupName: 'DoNotDeleteRg'
+            backendAzureRmStorageAccountName: 'donotdeletestorage555'
+            backendAzureRmContainerName: 'tfstate'
+            backendAzureRmKey: 'terraformtfstate'
+        - task: TerraformTask@5
+          inputs:
+            provider: 'azurerm'
+            command: 'validate'
+
+        - task: TerraformTask@5
+          inputs:
+            provider: 'azurerm'
+            command: 'plan'
+            environmentServiceNameAzureRM: 'pipeline-creation'
+            environmentAzureRmOverrideSubscriptionID: '3a45f28c-3b05-4d1b-b640-21585be45e39'
