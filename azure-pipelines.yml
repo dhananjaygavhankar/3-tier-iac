@@ -39,5 +39,6 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'plan'
+            workingDirectory: '$(System.DefaultWorkingDirectory)\3-tier-A-Using_Data_block\Todo_infra'
             environmentServiceNameAzureRM: 'pipeline-creation'
             environmentAzureRmOverrideSubscriptionID: '3a45f28c-3b05-4d1b-b640-21585be45e39'
