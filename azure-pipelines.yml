@@ -18,6 +18,7 @@ stages:
           inputs:
             terraformVersion: 'latest'
         - task: TerraformTask@5
+          displayName: 'initialization'
           inputs:
             provider: 'azurerm'
             command: 'init'
@@ -28,6 +29,7 @@ stages:
             backendAzureRmContainerName: 'tfstate'
             backendAzureRmKey: 'terraformtfstate'
         - task: TerraformTask@5
+          displayName: 'Validation'
           inputs:
             provider: 'azurerm'
             command: 'validate'
