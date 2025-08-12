@@ -34,9 +34,10 @@ stages:
             provider: 'azurerm'
             command: 'validate'
 
-        # - task: TerraformTask@5
-        #   inputs:
-        #     provider: 'azurerm'
-        #     command: 'plan'
-        #     environmentServiceNameAzureRM: 'pipeline-creation'
-        #     environmentAzureRmOverrideSubscriptionID: '3a45f28c-3b05-4d1b-b640-21585be45e39'
+        - task: TerraformTask@5
+          displayName: 'Plan'
+          inputs:
+            provider: 'azurerm'
+            command: 'plan'
+            environmentServiceNameAzureRM: 'pipeline-creation'
+            environmentAzureRmOverrideSubscriptionID: '3a45f28c-3b05-4d1b-b640-21585be45e39'
