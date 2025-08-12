@@ -25,7 +25,7 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'init'
-            workingDirectory: '3tier'
+            workingDirectory: '$(3tier)'
             commandOptions: '-migrate-state'
             backendServiceArm: 'pipeline-creation'
             backendAzureRmOverrideSubscriptionID: '3a45f28c-3b05-4d1b-b640-21585be45e39'
