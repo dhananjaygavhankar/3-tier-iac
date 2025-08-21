@@ -6,8 +6,18 @@ variable "location" {}
 variable "resource_group_name" {}
 variable "nic_ip_frontend" {}
 variable "nsg_group" {}
-variable "username" {}
-variable "password" {}
-variable "key_vault" {}
-variable "username_value" {}
-variable "password_value" {}
+variable "username" {
+    description ="Enter Username"
+}
+variable "password" {
+    description ="Enter Password"
+}
+variable "key_vault" {
+    description = "A vault's name must be between 3-24 alphanumeric characters"
+}
+variable "username_value" {
+    description ="Enter Username Value"
+}
+variable "password_value" {
+    description ="Enter Password Value"
+}
